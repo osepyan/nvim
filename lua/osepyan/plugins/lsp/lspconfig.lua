@@ -131,6 +131,31 @@ return {
           },
         })
       end,
+      ["ruff"] = function()
+        lspconfig["ruff"].setup({
+          capabilities = capabilities,
+          init_options = {
+            settings = {
+              configuration = "~/.config/ruff/ruff.toml",
+            },
+          },
+        })
+      end,
+      ["pyright"] = function()
+        lspconfig["pyright"].setup({
+          capabilities = capabilities,
+          settings = {
+            pyright = {
+              disableOrganizeImports = true,
+            },
+            python = {
+              analysis = {
+                ignore = { "*" },
+              },
+            },
+          },
+        })
+      end,
     })
   end,
 }
