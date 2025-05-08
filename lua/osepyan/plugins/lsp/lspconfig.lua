@@ -68,15 +68,41 @@ return {
     })
 
     -- used to enable autocompletion (assign to every lsp server config)
-    local capabilities = cmp_nvim_lsp.default_capabilities()
+    -- 1) We take away the basic capabilities of the client
+    local base_caps = vim.lsp.protocol.make_client_capabilities()
+    -- 2) We limit it to a single format
+    base_caps.general.positionEncodings = { "utf-16" }
+
+    local capabilities = cmp_nvim_lsp.default_capabilities(base_caps)
 
     -- Change the Diagnostic symbols in the sign column (gutter)
     -- (not in youtube nvim video)
-    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
+    --
+    -- OLD VERSION --
+    -- local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+    -- for type, icon in pairs(signs) do
+    --   local hl = "DiagnosticSign" .. type
+    --   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+    -- end
+
+    -- NEW VERSION --
+    -- Setting icons for diagnostics via the new API
+    vim.diagnostic.config({
+      -- how to draw gutter signs for each level
+      signs = {
+        Error = { text = "", texthl = "DiagnosticSignError" },
+        Warn = { text = "", texthl = "DiagnosticSignWarn" },
+        Hint = { text = "󰠠", texthl = "DiagnosticSignHint" },
+        Info = { text = "", texthl = "DiagnosticSignInfo" },
+      },
+      -- you can add other general diagnostic settings here
+      underline = true,
+      update_in_insert = false,
+      virtual_text = {
+        spacing = 2,
+        prefix = "",
+      },
+    })
 
     mason_lspconfig.setup_handlers({
       -- default handler for installed servers
