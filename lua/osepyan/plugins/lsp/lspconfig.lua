@@ -136,7 +136,7 @@ return {
           capabilities = capabilities,
           init_options = {
             settings = {
-              configuration = "~/.config/ruff/ruff.toml",
+              configuration = "~/.config/ruff/pyproject.toml",
             },
           },
         })

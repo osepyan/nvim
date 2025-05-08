@@ -38,7 +38,6 @@ return {
         "prismals",
         "pyright",
         "ruff",
-        "yamlls",
       },
     })
 
@@ -46,8 +45,8 @@ return {
       ensure_installed = {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
-        "ruff",
         "eslint_d",
+        "ruff", -- python formatter
       },
     })
   end,
