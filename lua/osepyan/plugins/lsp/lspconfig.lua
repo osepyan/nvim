@@ -160,11 +160,12 @@ return {
       ["ruff"] = function()
         lspconfig["ruff"].setup({
           capabilities = capabilities,
-          init_options = {
-            settings = {
-              configuration = "~/.config/ruff/pyproject.toml",
-            },
-          },
+          -- INFO:: if you want to strictly define configuration globaly to all projects
+          --     init_options = {
+          --       settings = {
+          --         configuration = "~/.config/ruff/pyproject.toml",
+          --       },
+          -- },
         })
       end,
       ["pyright"] = function()
