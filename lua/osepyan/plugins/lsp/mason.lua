@@ -9,6 +9,7 @@ return {
         "pyright",
         "yamlls",
         "ruff",
+        "ty", -- https://github.com/astral-sh/ty?tab=readme-ov-file
       },
     },
     dependencies = {
