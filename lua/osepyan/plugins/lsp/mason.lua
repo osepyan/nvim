@@ -6,7 +6,6 @@ return {
       ensure_installed = {
         "html",
         "lua_ls",
-        "pyright",
         "yamlls",
         "ruff",
         "ty", -- https://github.com/astral-sh/ty?tab=readme-ov-file
