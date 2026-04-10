@@ -17,6 +17,8 @@ return {
       vim.keymap.set("n", "v", api.node.open.vertical, opts("Open: Vertical Split"))
       -- явно переопределяем s для горизонтального сплита
       vim.keymap.set("n", "h", api.node.open.horizontal, opts("Open: Horizontal Split"))
+      -- добавляем клавишу для смены корневой папки на папку текущего узла
+      vim.keymap.set("n", ".", api.tree.change_root_to_node, opts("CD"))
     end
 
     -- recommended settings from nvim-tree documentation
