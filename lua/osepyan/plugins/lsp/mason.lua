@@ -34,6 +34,7 @@ return {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "ruff", -- python formatter
+        "sql-formatter", -- SQL formatter
       },
     },
     dependencies = {

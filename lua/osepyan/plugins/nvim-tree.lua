@@ -4,11 +4,29 @@ return {
   config = function()
     local nvimtree = require("nvim-tree")
 
+    local function on_attach(bufnr)
+      local api = require("nvim-tree.api")
+      local opts = function(desc)
+        return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+      end
+
+      -- дефолтные клавиши
+      api.map.on_attach.default(bufnr)
+
+      -- явно переопределяем v для вертикального сплита
+      vim.keymap.set("n", "v", api.node.open.vertical, opts("Open: Vertical Split"))
+      -- явно переопределяем s для горизонтального сплита
+      vim.keymap.set("n", "h", api.node.open.horizontal, opts("Open: Horizontal Split"))
+      -- добавляем клавишу для смены корневой папки на папку текущего узла
+      vim.keymap.set("n", ".", api.tree.change_root_to_node, opts("CD"))
+    end
+
     -- recommended settings from nvim-tree documentation
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
 
     nvimtree.setup({
+      on_attach = on_attach,
       view = {
         width = 35,
         relativenumber = true,
@@ -52,5 +70,5 @@ return {
     keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" }) -- toggle file explorer on current file
     keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" }) -- collapse file explorer
     keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" }) -- refresh file explorer
-  end
+  end,
 }
