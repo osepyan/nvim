@@ -19,6 +19,7 @@ return {
         graphql = { "prettier" },
         liquid = { "prettier" },
         lua = { "stylua" },
+        sql = { "sql_formatter" },
         python = function(bufnr)
           if require("conform").get_formatter_info("ruff_format", bufnr).available then
             return { "ruff_fix", "ruff_format", "ruff_organize_imports" }
