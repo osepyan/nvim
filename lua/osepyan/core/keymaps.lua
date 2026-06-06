@@ -41,7 +41,7 @@ end, { desc = "1C → DTO (все поля str)" })
 
 local function dto_to_column()
   vim.cmd([[%s/\(\w\+\): str | None = None/\1 = Column(String, nullable=True, default=None)/]])
-  vim.cmd([[%s/\(\w\+\): datetime | None = None/\1 = Column(DateTime(timezone=True), nullable=True, default=None)/]])
+  vim.cmd([[%s/\(\w\+\): datetime | None = None/\1 = Column(DateTime, nullable=True, default=None)/]])
   vim.cmd([[%s/\(\w\+\): bool | None = None/\1 = Column(Boolean, nullable=True, default=None)/]])
   vim.cmd([[%s/\(\w\+\): int | None = None/\1 = Column(Integer, nullable=True, default=None)/]])
   vim.cmd([[%s/\(\w\+\): float | None = None/\1 = Column(Float, nullable=True, default=None)/]])
